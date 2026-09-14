@@ -13,3 +13,6 @@ tokenlist * get_tokens(char *input);
 tokenlist * new_tokenlist(void);
 void add_token(tokenlist *tokens, char *item);
 void free_tokens(tokenlist *tokens);
+
+// Function to print prompt to user
+void print_prompt(void);
