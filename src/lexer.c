@@ -6,7 +6,7 @@
 int main()
 {
 	while (1) {
-		printf("> ");
+		print_prompt();
 
 		/* input contains the whole command
 		 * tokens contains substrings from input split by spaces
@@ -88,4 +88,36 @@ void free_tokens(tokenlist *tokens) {
 		free(tokens->items[i]);
 	free(tokens->items);
 	free(tokens);
+}
+
+
+// Get variables through env and prompt user
+void print_prompt(void)
+{
+    char *user = getenv("USER");
+    char *machine = getenv("MACHINE");
+    char *pwd = getenv("PWD");
+
+    if (user == NULL)
+    {
+        user = getenv("LOGNAME");
+    }
+
+    if (user == NULL)
+    {
+        user = "unknown";
+    }
+
+    if (machine == NULL)
+    {
+        machine = "unknown";
+    }
+
+    if (pwd == NULL)
+    {
+        pwd = "unknown";
+    }
+
+    printf("%s@%s:%s> ", user, machine, pwd);
+    fflush(stdout);
 }
